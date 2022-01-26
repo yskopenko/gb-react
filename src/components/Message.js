@@ -10,6 +10,7 @@ export const Message = (props) => {
     };
 
 Message.propTypes = {
+    id: propTypes.string,
     author: propTypes.string,
     text: propTypes.string
 };

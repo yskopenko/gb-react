@@ -19,7 +19,7 @@ function App() {
 
   const sendMessage = (author, text) => {
     const newMessageList = [...messageList];
-    const newMessage = {author, text};
+    const newMessage = {author, text, id: Date.now()};
     newMessageList.push(newMessage);
     setMessageList(newMessageList);
   };
