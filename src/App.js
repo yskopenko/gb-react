@@ -1,73 +1,29 @@
-import { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { ChatList } from "./components/ChatList";
-import { MessageInput } from "./components/MessageInput";
-import { MessageList } from "./components/MessageList";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
 
-const useStyles = makeStyles({
-  wrapper: {
-    display: "grid",
-    gridTemplateColumns: "200px 1fr"
-  }
-});
+import { Home } from "./routes/Home";
+import { Chats } from "./routes/Chats";
+import { Profile } from "./routes/Profile";
+
 
 function App() {
-
-  const classes = useStyles();
-
-  const [messageList, setMessageList] = useState([]);
-
-  const sendMessage = (author, text) => {
-    const newMessageList = [...messageList];
-    const newMessage = {author, text, id: Date.now()};
-    newMessageList.push(newMessage);
-    setMessageList(newMessageList);
-  };
-
-  const onSendMessage = (value) => {
-    sendMessage("user", value);
-  };
-
-  useEffect(() => {
-    if (messageList.length === 0) {
-      return;
-    }
-
-    const tail = messageList[messageList.length - 1];
-    if (tail.author === 'bot') {
-      return;
-    }
-
-    sendMessage('bot', 'hi')
-  }, [messageList]);
-
   return (
-    <div className={classes.wrapper}>
-      <ChatList 
-        list={[
-          {
-            name: 'name',
-            id: '1'
-          }, 
-          {
-            name: 'name',
-            id: '1'
-          }, 
-          {
-            name: 'name',
-            id: '1'
-          }, 
-          {
-            name: 'name',
-            id: '1'
-          }
-        ]}
-      />
-      <div>
-        <MessageList messageList={messageList} />
-        <MessageInput onSend={onSendMessage} />
-      </div>
-    </div>
+    <>
+      <BrowserRouter>
+       <AppBar color="secondary" position='static'>
+        <Toolbar>
+           <Button to="/" component={Link} variant="outlined" color="inherit">Home</Button>
+           <Button to="/profile" component={Link} variant="outlined" color="inherit">Profile</Button>
+           <Button to="/chats" component={Link} variant="outlined" color="inherit">Chats</Button>
+        </Toolbar>
+       </AppBar>
+       <Routes>
+         <Route component={Chats} path="/chats" />
+         <Route component={Profile} path="/profile" />
+         <Route component={Home} path="/" />
+       </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
