@@ -1,35 +1,31 @@
 import { useEffect, useState } from 'react';
-import './App.css';
-import {Button, Message} from './components';
+import { makeStyles } from '@material-ui/core/styles';
+import { ChatList } from "./components/ChatList";
+import { MessageInput } from "./components/MessageInput";
+import { MessageList } from "./components/MessageList";
 
-
+const useStyles = makeStyles({
+  wrapper: {
+    display: "grid",
+    gridTemplateColumns: "200px 1fr"
+  }
+});
 
 function App() {
 
-  const text = 'Homework 1'
-  
+  const classes = useStyles();
+
   const [messageList, setMessageList] = useState([]);
-  const [value, setValue] = useState('');
 
   const sendMessage = (author, text) => {
     const newMessageList = [...messageList];
-    const newMessage = {author, text};
+    const newMessage = {author, text, id: Date.now()};
     newMessageList.push(newMessage);
     setMessageList(newMessageList);
   };
 
-  const resetForm = () => {
-    setValue('');
-  };
-
-  const onSumbitMessage = (event) => {
-    event.preventDefault();
-    sendMessage('user', value);
-    resetForm();
-  };
-
-  const onChangeMessageInput = (event) => {
-    setValue(event.target.value);
+  const onSendMessage = (value) => {
+    sendMessage("user", value);
   };
 
   useEffect(() => {
@@ -46,55 +42,31 @@ function App() {
   }, [messageList]);
 
   return (
-    <div className="App">
-      <Message text={text}/>
-
-       <form onSubmit={onSumbitMessage}>
-         <input
-          className="text-send"
-          onChange={onChangeMessageInput}
-          placeholder="message"
-          value={value}
-          type="text"
-         />
-          <button
-            className="button-send">
-            Send
-          </button>
-       </form>
-       <ul>
-         {
-           messageList.map((item, index) => (
-              <li key={index}>
-                {item.author} - {item.text}
-              </li>
-           ))
-         }
-       </ul>
-
-
-      <Button
-        color="alert">
-        alert
-      </Button>
-      <Button disabled={false}>
-        disabled=false
-      </Button>
-      <Button disabled={true}>
-        disabled=true
-      </Button>
-      <Button disabled>
-        disabled=true
-      </Button>
-      <Button
-        color="primary"
-        onClick={() => {
-          console.log('click')
-        }}
-      >
-        color="primary"
-      </Button>
-
+    <div className={classes.wrapper}>
+      <ChatList 
+        list={[
+          {
+            name: 'name',
+            id: '1'
+          }, 
+          {
+            name: 'name',
+            id: '1'
+          }, 
+          {
+            name: 'name',
+            id: '1'
+          }, 
+          {
+            name: 'name',
+            id: '1'
+          }
+        ]}
+      />
+      <div>
+        <MessageList messageList={messageList} />
+        <MessageInput onSend={onSendMessage} />
+      </div>
     </div>
   );
 }
