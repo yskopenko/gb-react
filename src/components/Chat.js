@@ -1,6 +1,6 @@
 import { ListItem, ListItemText } from "@material-ui/core";
-import propTypes from "prop-types";
 import { Link } from "react-router-dom";
+import propTypes from "prop-types";
 
 export const Chat = ({ name, id }) => {
   return (

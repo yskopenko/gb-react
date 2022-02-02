@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { AppBar, Toolbar, Button } from "@material-ui/core";
 
-import { Home } from "./routes/Home";
-import { Chats } from "./routes/Chats";
-import { Profile } from "./routes/Profile";
+import { Home } from "./routes/Home/index";
+import { Chats } from "./routes/Chats/index";
+import { Profile } from "./routes/Profile/index";
 
 
-function App() {
+export const App = () => {
   return (
-    <>
+    <div>
       <BrowserRouter>
        <AppBar color="secondary" position='static'>
         <Toolbar>
@@ -18,12 +18,12 @@ function App() {
         </Toolbar>
        </AppBar>
        <Routes>
-         <Route component={Chats} path="/chats" />
-         <Route component={Profile} path="/profile" />
-         <Route component={Home} path="/" />
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/chats/*" element={<Chats />} />
        </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

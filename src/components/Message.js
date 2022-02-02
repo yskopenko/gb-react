@@ -3,9 +3,10 @@ import propTypes from "prop-types";
 
 export const Message = (props) => {
     
-    return (<div>
+    return (
+    <div>
          [{props.author}]: {props.text}
-         </div>
+    </div>
          );
     };
 
