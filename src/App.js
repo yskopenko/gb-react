@@ -6,7 +6,6 @@ import { Chats } from "./routes/Chats/index";
 import { Profile } from "./routes/Profile/index";
 import { store } from './store'
 
-
 export const App = () => {
   return (
     <Provider store={store}>
