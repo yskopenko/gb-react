@@ -1,14 +1,15 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { AppBar, Toolbar, Button } from "@material-ui/core";
-
+import { Provider } from 'react-redux'
 import { Home } from "./routes/Home/index";
 import { Chats } from "./routes/Chats/index";
 import { Profile } from "./routes/Profile/index";
+import { store } from './store'
 
 
 export const App = () => {
   return (
-    <div>
+    <Provider store={store}>
       <BrowserRouter>
        <AppBar color="secondary" position='static'>
         <Toolbar>
@@ -23,7 +24,7 @@ export const App = () => {
         <Route path="/chats/*" element={<Chats />} />
        </Routes>
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 }
 
