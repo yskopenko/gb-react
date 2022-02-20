@@ -3,7 +3,7 @@ import {sendMessageWithThunk} from "../store/messages/actions";
 import {getChatMessagesById} from "../store/messages/selectors";
 import {hasChatById} from "../store/chats/selectors";
 import {useParams} from "react-router-dom";
-import {AUTHOR_USER} from "../constants/authors";
+import { AUTHOR_USER } from "../constants/authors";
 
 
 export const withChatMessages = (Component) => {
