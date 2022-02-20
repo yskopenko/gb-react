@@ -1,21 +1,26 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+
 import { MessageInput } from "../../components/MessageInput";
 import { MessageList } from "../../components/MessageList";
-import { CHATS } from "../../mocks/chats";
+import {getChatMessagesById} from "../../store/messages/selectors";
+import {createMessage} from "../../store/messages/actions";
+import {hasChatById} from "../../store/chats/selectors";
 
 export const Messages = () => {
   const { chatId } = useParams();
-  const [messageList, setMessageList] = useState([]);
+
+  const dispatch = useDispatch();
+  const messageList = useSelector(getChatMessagesById(chatId));
+  const hasChat = useSelector(hasChatById(chatId));
 
   const sendMessage = (author, text) => {
-    const newMessageList = [...messageList];
     const newMessage = {
       author,
       text
     };
-    newMessageList.push(newMessage);
-    setMessageList(newMessageList);
+    dispatch(createMessage(newMessage, chatId))
   };
 
   const onSendMessage = (value) => {
@@ -23,7 +28,7 @@ export const Messages = () => {
   };
 
   useEffect(() => {
-    if (messageList.length === 0) {
+    if (!messageList || messageList.length === 0) {
       return;
     }
 
@@ -35,7 +40,7 @@ export const Messages = () => {
     sendMessage("bot", "hello");
   }, [messageList]);
 
-  if (!CHATS.find(({ id }) => id === chatId)) {
+  if (!hasChat) {
     return <Navigate to="/chats" />;
   }
 
