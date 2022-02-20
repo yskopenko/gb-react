@@ -1,10 +1,10 @@
-export const CREATE_CHAT = 'CREATE_CHAT'
+export const ADD_CHAT = 'ADD_CHAT'
 export const SET_CHATS = 'SET_CHATS'
 export const REMOVE_CHAT = 'REMOVE_CHAT'
 
 
-export const createChat = (chat) => ({
-  type: CREATE_CHAT,
+export const addChat = (chat) => ({
+  type: ADD_CHAT,
   payload: chat,
 })
 export const setChats = (chats) => ({
