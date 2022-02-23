@@ -1,9 +1,9 @@
 import React from "react";
-import { Route, Navigate } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 
 export function PrivateRoute({ auth, ...rest }) {
   return auth ? (
-    <Route {...rest} />
+    <Outlet {...rest} />
   ) : (
     <Navigate to={{ pathname: "/login" }} />
   );

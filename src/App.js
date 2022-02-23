@@ -42,11 +42,17 @@ export const App = () => {
         </AppBar>
         <Routes>
           <Route path="/" element={<Home />} />
-          <PrivateRoute auth={isAuth} path="/profile" element={<Profile />} />
+          <Route path='/profile' element={<PrivateRoute/>}>
+            <Route auth={isAuth}  path='/profile' element={<Profile/>}/>
+          </Route>
           <Route auth={isAuth} path="/chats/*" element={<Chats />} />
           <Route path="/animals" element={<Animals />} />
-          <PublicRoute auth={isAuth} path="/login" element={<Login />}/>
-          <PublicRoute auth={isAuth} path="/sign-up" element={<SignUp />}/>
+          <Route path='/login' element={<PublicRoute/>}>
+            <Route auth={isAuth}  path='/login' element={<Login/>}/>
+          </Route>
+          <Route path='/sign-up' element={<PublicRoute/>}>
+            <Route auth={isAuth}  path='/sign-up' element={<SignUp/>}/>
+          </Route>
         </Routes>
         </BrowserRouter>
       </>
