@@ -23,7 +23,7 @@ export const Animals = () => {
 
     return (
         <div>
-            <h1>Homework</h1>
+            <h1>Cat Facts</h1>
 
             {
                 !isError &&

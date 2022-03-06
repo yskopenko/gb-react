@@ -1,4 +1,4 @@
-import {TOGGLE_SHOW_PROFILE} from "./action";
+import {TOGGLE_SHOW_PROFILE} from "./actions";
 
 
 const initialValues = {

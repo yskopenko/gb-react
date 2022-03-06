@@ -2,7 +2,7 @@ import {
     SET_ERROR_ANIMALS,
     SET_DATA_ANIMALS,
     SET_LOADING_ANIMALS
-} from "./action";
+} from "./actions";
 
 const initialState = {
     isError: false,
