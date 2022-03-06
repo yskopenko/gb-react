@@ -6,6 +6,7 @@ import { Home } from "./routes/Home/index";
 import { Chats } from "./routes/Chats/index";
 import { Profile } from "./routes/Profile/index";
 import { store, persistor } from './store'
+import { Animals } from "./routes/Animals";
 
 export const App = () => {
   return (
@@ -17,12 +18,14 @@ export const App = () => {
             <Button to="/" component={Link} variant="outlined" color="inherit">Home</Button>
             <Button to="/profile" component={Link} variant="outlined" color="inherit">Profile</Button>
             <Button to="/chats" component={Link} variant="outlined" color="inherit">Chats</Button>
+            <Button to="/animals" component={Link} variant="outlined" color="inherit">Animals</Button>
           </Toolbar>
         </AppBar>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/chats/*" element={<Chats />} />
+          <Route path="/animals" element={<Animals />} />
         </Routes>
         </BrowserRouter>
       </PersistGate>
